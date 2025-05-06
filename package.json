@@ -2,7 +2,11 @@
   "name": "ng-splitter",
   "displayName": "Angular Component Splitter",
   "description": "Angular Component Splitter automatically divides your editor into three columns and opens the corresponding .component.ts, .component.html and .component.scss files whenever you open any one of them. This streamlines navigation between an Angular component's core files, boosts productivity, and keeps your workflow focused.",
-  "version": "0.0.1",
+  "version": "0.0.2",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/DanielGabbay/ng-splitter"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },
@@ -110,7 +114,8 @@
     "pretest": "npm run compile-tests && npm run compile && npm run lint",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "pack": "npm run compile && npx vsce package -o releases/ng-splitter-$npm_package_version.vsix"
   },
   "devDependencies": {
     "@types/vscode": "^1.80.0",

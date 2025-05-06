@@ -1,6 +1,6 @@
 # Angular Component Splitter
 
-A lightweight VS Code extension that helps you navigate between Angular component files (`.ts`, `.html`, `.scss`) by placing them in adjacent editor groups. Streamline your Angular development workflow and easily switch between component files with convenient navigation buttons.
+A lightweight VS Code extension that helps you navigate between Angular component files (`.ts`, `.html`, `.scss`) by placing them in adjacent editor groups. Streamline your Angular development workflow and easily switch between component files with convenient navigation buttons and keyboard shortcuts.
 
 ## Features
 
@@ -10,8 +10,16 @@ A lightweight VS Code extension that helps you navigate between Angular componen
   If your editor is not split, the extension will automatically create a split and open the file there.
 - **Adaptive Placement**  
   Works with various editor layouts - if you have multiple editor groups, the extension will find the most appropriate adjacent group.
+- **Toggle View Mode**  
+  Quickly toggle between single file view and multi-file view with a single button or keyboard shortcut.
+- **Smart File Opening**  
+  The extension detects already open files and focuses on them instead of opening duplicates.
+- **Open All Related Files**  
+  With a single click, open both related files in adjacent splits for a complete component overview.
 - **Convenient Navigation Buttons**  
   Easy-to-use buttons in the editor title bar for quick navigation between component files.
+- **Keyboard Shortcuts**  
+  Efficient keyboard shortcuts for all operations.
 - **Zero Configuration**  
   Works out of the box—no additional settings required.
 
@@ -24,25 +32,45 @@ A lightweight VS Code extension that helps you navigate between Angular componen
 
 ## Usage
 
-1. Open any Angular component file in your workspace:
-   - `my-component.component.ts`
-   - `my-component.component.html`
-   - `my-component.component.scss`
-2. Use the navigation buttons in the editor title bar to open related component files:
-   - When viewing a `.ts` file, you'll see buttons for HTML and SCSS
-   - When viewing a `.html` file, you'll see buttons for TS and SCSS
-   - When viewing a `.scss` file, you'll see buttons for TS and HTML
+### Navigation Buttons
 
-3. The extension will open the related file in an adjacent editor group:
-   - If the editor is not split, it will create a split and open the file there
-   - If there are already multiple splits, it will find the most appropriate adjacent group
+When viewing an Angular component file, you'll see navigation buttons in the editor title bar:
+
+- **TS/HTML/SCSS Buttons**: Open the corresponding component file in an adjacent editor group
+- **Open Other Files**: Opens both related component files in split views
+- **Toggle View**: Switch between single-file and multi-file views
+
+### Keyboard Shortcuts
+
+- `Ctrl+Shift+T` / `Cmd+Shift+T` (macOS): Open the TypeScript file
+- `Ctrl+Shift+H` / `Cmd+Shift+H` (macOS): Open the HTML file
+- `Ctrl+Shift+S` / `Cmd+Shift+S` (macOS): Open the SCSS file
+- `Ctrl+Shift+O` / `Cmd+Shift+O` (macOS): Open both other component files
+- `Ctrl+Shift+A` / `Cmd+Shift+A` (macOS): Toggle between single and multi-file views
 
 ## How It Works
+
+### Smart Navigation
 
 The extension uses these smart placement rules:
 - If your editor is not split, it creates a new split and opens the file there
 - If you have two editor groups, it opens the file in the non-active group
-- If you have more than two editor groups or a grid layout, it tries to find the most appropriate adjacent group
+- If you have more than two editor groups, it tries to find the most appropriate adjacent group
+- If the file is already open in any editor, it focuses on that editor instead of opening a duplicate
+
+### Toggle View Mode
+
+The Toggle View feature provides a convenient way to switch between viewing modes:
+- When in single-file view, it will open all related component files in split views
+- When in multi-file view, it will close all related component files except the current one
+
+### Open Other Files
+
+When you use the "Open Other Files" command:
+1. The extension checks which component files are already open
+2. If both files are already open, it will focus on one of them
+3. If only one file is open, it will focus on it and open the other in a split
+4. If neither file is open, it will open both files in appropriate splits
 
 ## Development
 
@@ -60,5 +88,19 @@ The extension uses these smart placement rules:
    code .
    ```
 4. Press F5 to start debugging
+
+## Terminal Integration
+
+You can also trigger extension commands from the terminal:
+
+```bash
+code --execute "angularComponentSplitter.openTs"
+code --execute "angularComponentSplitter.openHtml"
+code --execute "angularComponentSplitter.openScss"
+code --execute "angularComponentSplitter.openOther"
+code --execute "angularComponentSplitter.toggleView"
+```
+
+This allows integration with external tools, scripts, and automation software.
 
 
