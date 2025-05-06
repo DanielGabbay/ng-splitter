@@ -1,0 +1,96 @@
+{
+  "name": "ng-splitter",
+  "displayName": "Angular Component Splitter",
+  "description": "Angular Component Splitter automatically divides your editor into three columns and opens the corresponding .component.ts, .component.html and .component.scss files whenever you open any one of them. This streamlines navigation between an Angular component’s core files, boosts productivity, and keeps your workflow focused.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "angularComponentSplitter.openTs",
+        "title": "Open Component TS",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "angularComponentSplitter.openHtml",
+        "title": "Open Component HTML",
+        "icon": "$(symbol-file)"
+      },
+      {
+        "command": "angularComponentSplitter.openScss",
+        "title": "Open Component SCSS",
+        "icon": "$(symbol-structure)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "angularComponentSplitter.openHtml",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.ts$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.openScss",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.ts$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.openTs",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(html|scss)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.openScss",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(html|scss)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.openTs",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.scss$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.openHtml",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.scss$/",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && npm run lint && node esbuild.js",
+    "watch": "npm-run-all -p watch:*",
+    "watch:esbuild": "node esbuild.js --watch",
+    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
+    "package": "npm run check-types && npm run lint && node esbuild.js --production",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.80.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "esbuild": "^0.25.3",
+    "npm-run-all": "^4.1.5",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
