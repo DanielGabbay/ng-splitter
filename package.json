@@ -1,7 +1,7 @@
 {
   "name": "ng-splitter",
   "displayName": "Angular Component Splitter",
-  "description": "Angular Component Splitter automatically divides your editor into three columns and opens the corresponding .component.ts, .component.html and .component.scss files whenever you open any one of them. This streamlines navigation between an Angular component’s core files, boosts productivity, and keeps your workflow focused.",
+  "description": "Angular Component Splitter automatically divides your editor into three columns and opens the corresponding .component.ts, .component.html and .component.scss files whenever you open any one of them. This streamlines navigation between an Angular component's core files, boosts productivity, and keeps your workflow focused.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.80.0"
@@ -18,29 +18,61 @@
       {
         "command": "angularComponentSplitter.openTs",
         "title": "Open Component TS",
-        "icon": "$(file-code)"
+        "icon": "resources/ts.svg"
       },
       {
         "command": "angularComponentSplitter.openHtml",
         "title": "Open Component HTML",
-        "icon": "$(symbol-file)"
+        "icon": "resources/html.svg"
       },
       {
         "command": "angularComponentSplitter.openScss",
         "title": "Open Component SCSS",
-        "icon": "$(symbol-structure)"
+        "icon": "resources/css.svg"
+      },
+      {
+        "command": "angularComponentSplitter.openOther",
+        "title": "Open Other Component Files",
+        "icon": "resources/split.svg"
+      },
+      {
+        "command": "angularComponentSplitter.toggleView",
+        "title": "Toggle Component View",
+        "icon": "resources/component-view.svg"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "angularComponentSplitter.openScss",
+        "key": "ctrl+shift+s",
+        "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(html|ts)$/"
+      },
+      {
+        "command": "angularComponentSplitter.openTs",
+        "key": "ctrl+shift+t",
+        "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(html|scss)$/"
+      },
+      {
+        "command": "angularComponentSplitter.openHtml",
+        "key": "ctrl+shift+h",
+        "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(ts|scss)$/"
+      },
+      {
+        "command": "angularComponentSplitter.openOther",
+        "key": "ctrl+shift+o",
+        "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(ts|html|scss)$/"
+      },
+      {
+        "command": "angularComponentSplitter.toggleView",
+        "key": "ctrl+shift+a",
+        "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(ts|html|scss)$/"
       }
     ],
     "menus": {
       "editor/title": [
         {
-          "command": "angularComponentSplitter.openHtml",
-          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.ts$/",
-          "group": "navigation"
-        },
-        {
           "command": "angularComponentSplitter.openScss",
-          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.ts$/",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(html|ts)$/",
           "group": "navigation"
         },
         {
@@ -49,18 +81,18 @@
           "group": "navigation"
         },
         {
-          "command": "angularComponentSplitter.openScss",
-          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(html|scss)$/",
-          "group": "navigation"
-        },
-        {
-          "command": "angularComponentSplitter.openTs",
-          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.scss$/",
-          "group": "navigation"
-        },
-        {
           "command": "angularComponentSplitter.openHtml",
-          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.scss$/",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(ts|scss)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.openOther",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(ts|html|scss)$/",
+          "group": "navigation"
+        },
+        {
+          "command": "angularComponentSplitter.toggleView",
+          "when": "editorTextFocus && resourceFilename =~ /\\.component\\.(ts|html|scss)$/",
           "group": "navigation"
         }
       ]
